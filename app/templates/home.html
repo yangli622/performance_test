@@ -1,0 +1,33 @@
+<style>
+    .header{
+        position: relative;
+        width: 498px;
+        height: 80px;
+        background-color: #FFF;
+        margin: 0 auto;
+        top:50%;
+        margin-top:-125px;
+    }
+    .center_div{
+        float:left;
+        width:164px;
+        height: 80px;
+        text-align: center;
+        background-color: #90bbf7;
+        vertical-align:middle;
+        line-height: 80px;
+        border:1px solid #FFF;
+    }
+    a{
+        text-decoration : none;
+    }
+</style>
+{% extends 'base.html' %}
+{% block content %}
+<div class="header">
+    <a href="/tenant"><div class="center_div">租户配置</div></a>
+    <a href="/environment"><div class="center_div">环境配置</div></a>
+    <a href="/performance-test"><div class="center_div">执行拨测</div></a>
+</div>
+
+{% endblock %}

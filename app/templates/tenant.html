@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block head %}
+<script>
+    .center_div{
+        float:left;
+        width:164px;
+        height: 80px;
+        text-align: center;
+        background-color: #90bbf7;
+        vertical-align:middle;
+        line-height: 80px;
+        border:1px solid #FFF;
+    }
+</script>
+{% endblock %}
+{% block content %}
+<!-- 按钮触发模态框 -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新增租户</button>
+{% for tenant in tenants %}
+    <div style="border:1px solid #FFF;">
+        <div style="float: left;width:60px;">租户名：</div>
+        <div>{{ tenant.tenant_name }}</div>
+        <div style="float: left;width:60px;">项目id：</div>
+        <div>{{ tenant.project_id }}</div>
+        <div style="float: left;width:60px;">AK：</div>
+        <div>{{ tenant.ak }}</div>
+        <div style="float: left;width:60px;">SK：</div>
+        <div>{{ tenant.sk }}</div>
+    </div>
+{% endfor %}
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新增租户</h4>
+            </div>
+            <form id="tenant" method="post" action="{{ url_for('main.tenant_add') }}">
+                <div class="modal-body">
+                    <div style="height:30px;">
+                        <div style="float: left;width:60px;">租户名：</div>
+                        <div><input type="text" name="tenant_name"></div>
+                    </div>
+                    <div style="height:30px;">
+                        <div style="float: left;width:60px;">项目id：</div>
+                        <div><input type="text" name="project_id"></div>
+                    </div>
+                    <div style="height:30px;">
+                        <div style="float: left;width:60px;">AK：</div>
+                        <div><input type="text" name="tenant_ak"></div>
+                    </div>
+                    <div style="height:30px;">
+                        <div style="float: left;width:60px;">SK：</div>
+                        <div><input type="text" name="tenant_sk"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('tenant').submit();">提交更改</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+{% endblock %}
